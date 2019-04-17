@@ -1,3 +1,5 @@
-const mdLinks = require('../src/md-links');
+//import example
+const path = require('path');
+const fs = require('fs');
 
-console.log(mdLinks.add(1,2));
+console.log(path.basename('34r2'));
