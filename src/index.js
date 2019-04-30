@@ -1,10 +1,3 @@
-/* //import example
-const path = require('path');
-const fs = require('fs');
-
-console.log(path.basename('example'));
- */
-
 const fs = require('fs'); //import FileSystem module
 
 const filePathFile = (filePath, options) => {
