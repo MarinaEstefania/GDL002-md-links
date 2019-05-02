@@ -44,24 +44,30 @@ const fetch = require('node-fetch');
 
 function checkStatus(res) {
     if (res.ok) { // res.status >= 200 && res.status < 300
-        console.log(res+'line46 ok 200-300')
-        return res;
+        return console.log(res.status);
     } else {
-        console.log('status ERROR line 49')
-      /*   throw err(res.statusText); */
-        
+       return console.log(res.status);
     }
 }
- 
-fetch('https://www.npmjs.com/package/node-fetch')
+
+
+fetch('https://httpbin.org/status/400')
     .then(checkStatus)
-    .then(res => console.log('will not get here...'))
+    .then(res => console.log(':)...'))
     .catch(
         (err)=> {
             console.error(err);
         }
     );
-/* 
+
+    fetch('https://httpbin.org/status/400')
+    .then(res => {
+        console.log(res.ok);
+        console.log(res.status);
+        console.log(res.statusText);
+    });
+/*
+
 // validate status Link
 const statusLink = (link) => {
    const regExp = /(?:https?:\/\/)?(?:www\.)?[a-z0-9-]+\.[a-z]{2,5}/g
