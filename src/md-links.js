@@ -1,21 +1,7 @@
 const mdLinks = require('./index.js');
-
-const filePath = process.argv[2];
-
-const resultReadFile  = mdLinks(filePath, null);
-
-resultReadFile
-    .then(
-        (data)=> {
-            const linkArray = findLinksInFile(data);
-            const objArray = linkArray.map(putLinksInArray);
-            console.log(objArray);
-        }
-    ).catch(
-        (err)=> {
-            console.error(err);
-        }
-    );
+const fetch = require('node-fetch');
+const process = require('process');
+const chalk = require('chalk');
 
 //Find Links in File
 const findLinksInFile = (data) => {
@@ -40,32 +26,58 @@ const putLinksInArray = (mdLink) => {
 };
 
 
-const fetch = require('node-fetch');
-
-function checkStatus(res) {
+// Check status of every link using Library 'node-fetch'
+const checkStatus = (res) => {
     if (res.ok) { // res.status >= 200 && res.status < 300
-        return console.log(res.status);
-    } else {
-       return console.log(res.status);
+        return console.log(chalk.green(`✔ `,  res.status, 'Working OK:') + res.url );
     }
+    return console.log(chalk.red(`✖`, res.status, 'The next link is broken:') + res.url);
 }
 
+//function to
+const fetchLinksStatus = (url) =>{
+    fetch(url)
+        .then(checkStatus)
+        .catch(
+            (err)=> {
+                console.error(err);
+            }
+        );
+    }
 
-fetch('https://httpbin.org/status/400')
-    .then(checkStatus)
-    .then(res => console.log(':)...'))
-    .catch(
+
+//Main Function
+const filePath = process.argv[2];
+const resultReadFile  = mdLinks(filePath, null);
+resultReadFile
+    .then(
+        (data)=> {
+            const linkArray = findLinksInFile(data);
+            const objArray = linkArray.map(putLinksInArray);
+            console.log('** LINKS GOTTEN:** ')
+            console.log(objArray);
+            return objArray;
+        }
+    ).then(
+        (data) => {
+            console.log('**R E S U L T S **')
+            data.forEach(element => {
+              return fetchLinksStatus(element.link) ;
+            });
+        }
+    ).catch(
         (err)=> {
             console.error(err);
         }
     );
 
-    fetch('https://httpbin.org/status/400')
+
+  /*   fetch('https://httpbin.org/status/400')
     .then(res => {
         console.log(res.ok);
         console.log(res.status);
         console.log(res.statusText);
-    });
+    }); */
 /*
 
 // validate status Link
