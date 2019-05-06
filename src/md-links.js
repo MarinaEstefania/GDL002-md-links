@@ -46,43 +46,75 @@ const fetchLinksStatus = (url) =>{
     }
 
 
-//MAIN FUNCTION
+//allow user set options
 const filePath = process.argv[2];
 const optionSelected = process.argv[3];
-const resultReadFile  = mdLinks(filePath, optionSelected);
-resultReadFile
-    .then(
-        (data)=> {
-            const linkArray = findLinksInFile(data);
-            const objArray = linkArray.map(putLinksInArray);
-            console.log(chalk.inverse('** LINKS GOTTEN FROM FILE: ** '));
-            console.log(objArray);
-            return objArray;
-        }
-    ).then(
-        (data) => {
-            console.log(chalk.inverse('** R E S U L T S **'));
-            data.forEach(element => {
-              return fetchLinksStatus(element.link) ;
-            });
-        }
-    ).catch(
-        (err)=> {
-            console.error(err);
-        }
-    );
 
+const resultReadFile = mdLinks(filePath, optionSelected);
 
+const flowDirection = setDirection => {
+  switch (setDirection) {
+    case 'validate':
+      console.log(chalk.inverse('VALIDATE option selected'));
+      resultReadFile
+        .then(data => {
+          const linkArray = findLinksInFile(data);
+          const objArray = linkArray.map(putLinksInArray);
+          return objArray;
+        })
+        .then(data => {
+          console.log(chalk.bgMagenta('Make an HTTP request to figure out if the links work or not'));
+          data.forEach(element => {
+            return fetchLinksStatus(element.link);
+          });
+        })
+        .catch(err => {
+          console.error(err);
+        });
+      break;
 
+    case 'stats':
+      console.log('stats');
+      break;
 
+    case 'validate stats':
+      console.log('two options');
+      break;
 
+    default:
+    console.log(chalk.inverse('NO option selected'));
+      resultReadFile.then(data => {
+        const linkArray = findLinksInFile(data);
+        const objArray = linkArray.map(putLinksInArray);
+        console.log(chalk.bgMagenta('Printing found links and their title from the file given'));
+        console.log(objArray);
+        return objArray;
+      });
+  }
+};
+
+flowDirection(optionSelected);
 
 
 
   /*   fetch('https://httpbin.org/status/400')
-    .then(res => {
+  .then(res => {
         console.log(res.ok);
         console.log(res.status);
         console.log(res.statusText);
     });
 */
+
+                /* const flowDirection = (setDirection) => {
+                    if(setDirection == 'validate') {
+                       return console.log('validate option')
+                    }
+                    if (setDirection == 'stats'){
+                        return console.log('stats option')
+                    }
+                    if (setDirection == 'stats validate'){
+                        return console.log('stats validate option')
+                    }
+                    return console.log('no option selected ')
+                }
+                 */

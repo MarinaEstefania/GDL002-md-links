@@ -5,4 +5,4 @@
 - [ ] Documentación técnica de la librería.
 - [ ] Guía de uso e instalación de la librería
 [Link Working Example](https://es.wikipedia.org/wiki/Markdown)
-[Link 400 err Example](https://httpbin.org/status/400)
+[Link 400 err Example](http://httpbin.org/status/400)
