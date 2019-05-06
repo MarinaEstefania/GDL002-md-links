@@ -29,12 +29,12 @@ const putLinksInArray = (mdLink) => {
 // Check status of every link using Library 'node-fetch'
 const checkStatus = (res) => {
     if (res.ok) { // res.status >= 200 && res.status < 300
-        return console.log(chalk.green(`✔ `,  res.status, 'Working OK:') + res.url );
+        return console.log(chalk.green(`✔`,  res.status, 'This link is working OK: ') + res.url );
     }
-    return console.log(chalk.red(`✖`, res.status, 'The next link is broken:') + res.url);
+    return console.log(chalk.red(`✖`, res.status, 'This link is broken: ') + res.url);
 }
 
-//function to
+//function to Check link status
 const fetchLinksStatus = (url) =>{
     fetch(url)
         .then(checkStatus)
@@ -54,13 +54,13 @@ resultReadFile
         (data)=> {
             const linkArray = findLinksInFile(data);
             const objArray = linkArray.map(putLinksInArray);
-            console.log('** LINKS GOTTEN:** ')
+            console.log(chalk.inverse('** LINKS GOTTEN FROM FILE: ** '));
             console.log(objArray);
             return objArray;
         }
     ).then(
         (data) => {
-            console.log('**R E S U L T S **')
+            console.log(chalk.inverse('** R E S U L T S **'));
             data.forEach(element => {
               return fetchLinksStatus(element.link) ;
             });
@@ -77,13 +77,5 @@ resultReadFile
         console.log(res.ok);
         console.log(res.status);
         console.log(res.statusText);
-    }); */
-/*
-
-// validate status Link
-const statusLink = (link) => {
-   const regExp = /(?:https?:\/\/)?(?:www\.)?[a-z0-9-]+\.[a-z]{2,5}/g
-   const validLink = link.match(regExp);
-   console.log('hi');
-   return console.log(validLink);
-} */
+    });
+*/
