@@ -46,9 +46,10 @@ const fetchLinksStatus = (url) =>{
     }
 
 
-//Main Function
+//MAIN FUNCTION
 const filePath = process.argv[2];
-const resultReadFile  = mdLinks(filePath, null);
+const optionSelected = process.argv[3];
+const resultReadFile  = mdLinks(filePath, optionSelected);
 resultReadFile
     .then(
         (data)=> {
@@ -70,6 +71,12 @@ resultReadFile
             console.error(err);
         }
     );
+
+
+
+
+
+
 
 
   /*   fetch('https://httpbin.org/status/400')
