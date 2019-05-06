@@ -1,12 +1,13 @@
 # MarkDown Links Project
-## Introduction
-![enter image description here](https://lh3.googleusercontent.com/uSTulQK2T54AS2Dg2Qfxx77tfPhX6VRWiCdLeYEVf_rCPAzrlfyPw9G4BwJuYmpcDzl08vF5G3CQ1A)
+## Introduction 
+![enter image description here](https://lh3.googleusercontent.com/uSTulQK2T54AS2Dg2Qfxx77tfPhX6VRWiCdLeYEVf_rCPAzrlfyPw9G4BwJuYmpcDzl08vF5G3CQ1A)  
+
+
 In this project I create a library in JavaScript using **Node.js®** witch is a JavaScript runtime built on [Chrome's V8 JavaScript engine](https://v8.dev/).
 
 **This library can be used to check the links' file with .md extensión and then report some statistics.**
 The Flowchart's project goes like this: 
-
-![enter image description here](https://lh3.googleusercontent.com/9Fy2o6tJlaaOVEOPYO0Xow_1gsL8eS62j-OvcFmDzSWDlOq1dw3EBuzbTTZ1wKIOfYYCPqba0T_o6w "MdLinks Flowchart")
+![For better resolution click here](https://i.ibb.co/w0xwgcw/diagrama-markdown.png)
 
 **Markdown** can be defined as a **plain text formatting syntax** used to write content on the web. It’s commonly used by writers and programmers to write quickly without having to take time using the formatting toolbar of text editors.  
 
@@ -29,6 +30,9 @@ The Flowchart's project goes like this:
 -  [file system](https://nodejs.org/api/fs.html).
 -  [path](https://nodejs.org/api/path.html).
 -   [markdown](https://daringfireball.net/projects/markdown/syntax).
+- [https://developer.att.com/video-optimizer/docs/best-practices/http-400-and-500-error-codes](https://developer.att.com/video-optimizer/docs/best-practices/http-400-and-500-error-codes)
+- [https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Usar_promesas](https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Usar_promesas)[https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/forEach](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/forEach)
+- 
 
 
 
