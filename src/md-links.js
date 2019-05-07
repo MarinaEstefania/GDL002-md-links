@@ -164,25 +164,3 @@ const flowDirection = setDirection => {
 };
 
 flowDirection(optionSelected);
-
-/*   fetch('https://httpbin.org/status/400')
-  .then(res => {
-        console.log(res.ok);
-        console.log(res.status);
-        console.log(res.statusText);
-    });
-*/
-
-/* const flowDirection = (setDirection) => {
-                    if(setDirection == 'validate') {
-                       return console.log('validate option')
-                    }
-                    if (setDirection == 'stats'){
-                        return console.log('stats option')
-                    }
-                    if (setDirection == 'stats validate'){
-                        return console.log('stats validate option')
-                    }
-                    return console.log('no option selected ')
-                }
-                 */
