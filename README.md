@@ -8,7 +8,7 @@
   
   
 
-In this project, I create a library in JavaScript using **Node.js®** which is a JavaScript runtime built on [Chrome's V8 JavaScript engine](https://v8.dev/).
+This is a library created in JavaScript using **Node.js®** which is a JavaScript runtime built on [Chrome's V8 JavaScript engine](https://v8.dev/).
 
   
 
@@ -29,13 +29,15 @@ The Flowchart's project goes like this:
 ## How to use:
 
 ### Installation
-At your console stay in the folder where you want to install the module and all you have to do is write this in the Command Line Interface (CLI): 
+At your console stay in the folder where you want to install the module and all you have to do is write this in the Command Line Interface (CLI):
 **npm install MarinaEstefania/GDL002-md-links**
 
  ![Imgur](https://i.imgur.com/h7JB1Mz.png)
- 
+
+ Another thing you can do is **clone or download this repository** at your computer and then follow user guide.
+
 ### User Guide
-A new folder sould be created. Inside you can find an exampleFile.md to practice but if you want to try with a diferent file you just have to make sure that enter the correct path in the CLI. 
+A new folder should be created. Inside you can find an exampleFile.md to practice but if you want to try with a diferent file you just have to make sure that enter the correct path in the CLI. 
 At present, it only supports files.md wich means that you can't put a folder path but in the future I will be working on it.
 
 Write in the CLI the standar sentense followed by one of the next key words to get into an option: 
