@@ -58,7 +58,7 @@ const validateOption = () => {
     })
     .then(data => {
       console.log(
-        chalk.underline('Make an HTTP request to figure out if the links are working or not'),
+        chalk.underline('Make an HTTP request to figure out if the links are working or not')
       );
       data.forEach(element => {
         return fetchLinksValidate(element.link);
@@ -164,3 +164,9 @@ const flowDirection = setDirection => {
 };
 
 flowDirection(optionSelected);
+
+
+module.exports = {
+    findLinksInFile,
+    flowDirection
+}
