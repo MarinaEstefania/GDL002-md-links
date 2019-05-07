@@ -6,3 +6,4 @@
 - [ ] Guía de uso e instalación de la librería
 [Link Working Example](https://es.wikipedia.org/wiki/Markdown)
 [Link 400 err Example](http://httpbin.org/status/400)
+[Another working example](https://i.ibb.co/w0xwgcw/diagrama-markdown.png)

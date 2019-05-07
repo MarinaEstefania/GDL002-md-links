@@ -25,7 +25,6 @@ const putLinksInArray = (mdLink) => {
     return obj;
 };
 
-
 // Check status of every link using Library 'node-fetch'
 const checkStatus = (res) => {
     if (res.ok) { // res.status >= 200 && res.status < 300
@@ -45,51 +44,62 @@ const fetchLinksStatus = (url) =>{
         );
     }
 
+    //This part allows the user set options
+    const filePath = process.argv[2];
+    const optionSelected = process.argv[3];
 
-//allow user set options
-const filePath = process.argv[2];
-const optionSelected = process.argv[3];
+    const resultReadFile = mdLinks(filePath, optionSelected);
 
-const resultReadFile = mdLinks(filePath, optionSelected);
 
+    // Function to make validate option work
+    const validateOption = () => {
+        resultReadFile
+        .then(data => {
+            const linkArray = findLinksInFile(data);
+            const objArray = linkArray.map(putLinksInArray);
+            return objArray;})
+        .then(data => {
+            console.log(chalk.underline('Make an HTTP request to figure out if the links are working or not'));
+            data.forEach(element => {
+            return fetchLinksStatus(element.link);
+            });
+        })
+        .catch(err => {
+            console.error(err);
+        });
+    }
+
+    //function to make NO OPTION work
+    const noOptionSelected = () =>{
+              resultReadFile.then(data => {
+                const linkArray = findLinksInFile(data);
+                const objArray = linkArray.map(putLinksInArray);
+                console.log(chalk.underline('Printing found links and their title from the file given'));
+                console.log(objArray);
+                return objArray;
+              });
+}
+//This part goes to the chosen option using a SWITCH
 const flowDirection = setDirection => {
   switch (setDirection) {
     case 'validate':
-      console.log(chalk.inverse('VALIDATE option selected'));
-      resultReadFile
-        .then(data => {
-          const linkArray = findLinksInFile(data);
-          const objArray = linkArray.map(putLinksInArray);
-          return objArray;
-        })
-        .then(data => {
-          console.log(chalk.bgMagenta('Make an HTTP request to figure out if the links work or not'));
-          data.forEach(element => {
-            return fetchLinksStatus(element.link);
-          });
-        })
-        .catch(err => {
-          console.error(err);
-        });
+      console.log(chalk.bold('VALIDATE option selected'));
+      validateOption();
       break;
 
     case 'stats':
-      console.log('stats');
+      console.log(chalk.bold('stats option selected'));
+      console.log(chalk.underline('Working On It...'));
       break;
 
-    case 'validate stats':
-      console.log('two options');
+    case 'validate-stats':
+      console.log(chalk.bold('validate&stats options selected'));
+      console.log(chalk.underline('Working On It...'));
       break;
 
     default:
-    console.log(chalk.inverse('NO option selected'));
-      resultReadFile.then(data => {
-        const linkArray = findLinksInFile(data);
-        const objArray = linkArray.map(putLinksInArray);
-        console.log(chalk.bgMagenta('Printing found links and their title from the file given'));
-        console.log(objArray);
-        return objArray;
-      });
+    console.log(chalk.bold('NO option selected'));
+    noOptionSelected();
   }
 };
 
