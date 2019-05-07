@@ -28,7 +28,6 @@ const putLinksInArray = mdLink => {
 const checkValidate = res => {
   if (res.ok) {
     // res.status >= 200 && res.status < 300
-    
     return console.log(chalk.green(`✔`, res.status, 'This link is working OK: ') + res.url);
   }
   return console.log(chalk.red(`✖`, res.status, 'This link is broken: ') + res.url);
@@ -36,35 +35,8 @@ const checkValidate = res => {
 
 //function to Check link VALIDATE
 const fetchLinksValidate = url => {
-    fetch(url)
-    .then(checkValidate)
-    .catch(err => {
-        console.error(err);
-    });
-};
-
-
-let statusOK = 0;
-let statusFail = 0;
-let total = 0
-//function to count links fail or OK
-const fetchLinksStatus = url => {
   fetch(url)
-    .then(data => {
-      if (data.statusText != 'OK') {
-        // res.status >= 200 && res.status < 300
-        statusFail = statusFail + 1;
-      } else {
-        statusOK = statusOK + 1;
-      }
-      total = total + 1;
-      console.log('Total Links: ' + total);
-      console.log('Working Links :' + statusOK);
-      console.log('Broken Links: ' + statusFail);
-      console.log(' ');
-
-      return (total, statusOK, statusFail)
-    })
+    .then(checkValidate)
     .catch(err => {
       console.error(err);
     });
@@ -108,19 +80,18 @@ const statsSelected = () => {
       console.log(chalk.underline('Print text with total links'));
       let totalLinks = 0;
       data.forEach(element => {
-        element.link = 1
-        totalLinks = totalLinks + element.link
-      })
-      console.log('Total Links :' + totalLinks)
-   
+        element.link = 1;
+        totalLinks = totalLinks + element.link;
+      });
+      console.log('Total Links :' + totalLinks);
     })
     .catch(err => {
       console.error(err);
     });
 };
 //function to make validate-stats work
-const statsCount = () => {
-    resultReadFile
+const validateStatsOptionSelected = () => {
+  resultReadFile
     .then(data => {
       const linkArray = findLinksInFile(data);
       const objArray = linkArray.map(putLinksInArray);
@@ -128,14 +99,35 @@ const statsCount = () => {
     })
     .then(data => {
       console.log(chalk.underline('Print text with count of total, working and broken links'));
-            data.forEach(element => {
-                return fetchLinksStatus(element.link);
-            })
+      let statusOK = 0;
+      let statusFail = 0;
+      let total = 0;
+      data.forEach(element => {
+        fetch(element.link)
+          .then(data => {
+            if (data.statusText != 'OK') {
+              // res.status >= 200 && res.status < 300
+              statusFail = statusFail + 1;
+            } else {
+              statusOK = statusOK + 1;
+            }
+            total = total + 1;
+
+            console.log('Total Links: ' + total);
+            console.log('Working Links :' + statusOK);
+            console.log('Broken Links: ' + statusFail);
+            console.log(' ');
+            return total, statusOK, statusFail;
+          })
+          .catch(err => {
+            console.error(err);
+          });
+      });
     })
     .catch(err => {
       console.error(err);
     });
-}
+};
 //function to make NO OPTION work
 const noOptionSelected = () => {
   resultReadFile.then(data => {
@@ -146,7 +138,6 @@ const noOptionSelected = () => {
     return objArray;
   });
 };
-
 
 //This part goes to the chosen option using a SWITCH
 const flowDirection = setDirection => {
@@ -163,7 +154,7 @@ const flowDirection = setDirection => {
 
     case 'validate-stats':
       console.log(chalk.bold('validate&stats options selected'));
-      validateStatsOptionSelected()
+      validateStatsOptionSelected();
       break;
 
     default:
