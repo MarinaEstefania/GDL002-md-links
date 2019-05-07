@@ -67,7 +67,7 @@ node src/md-links.js src/exampleFile.md **stats**![Imgur](https://i.imgur.com/64
    **Option 4:  validate-stats**
 Use this option to see the total of links, How many links are working and how many links presents bad request.
      Example:   
-node src/md-links.js src/exampleFile.md **valida-stats**![Imgur](https://i.imgur.com/JzC0j5Z.png)
+node src/md-links.js src/exampleFile.md **validate-stats**![Imgur](https://i.imgur.com/JzC0j5Z.png)
 
 ## Documentation
 
@@ -104,3 +104,4 @@ node src/md-links.js src/exampleFile.md **valida-stats**![Imgur](https://i.imgur
 - [forEach Method MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/forEach)
 
 - [CLI ](https://www.proyectobyte.com/windows/simbolo-del-sistema/uso-la-interfaz-linea-comandos)
+- [Guia test de codigo asincronico](https://doc.ebichu.cc/jest/docs/es-ES/asynchronous.html)
