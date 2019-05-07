@@ -1,19 +1,22 @@
 const mdLinks = require('../src/md-links');
 
 
-//path.isAbsolute() 
+describe ('md-Links.js File ', () => {
+  test('findLinksInFile should return a function', () =>{
+    expect(typeof (mdLinks.findLinksInFile)).toBe('function')
+  });
 
-//path <string>
-//Returns: <boolean>
-//is it an Absolute path?
-it('should return true o false absolute path', () => {
-  expect (mdLinks.isItAnAbsolutePath('/foo/bar')).toEqual(true)
-})
+  //TEST FOR OPTIONS
+  test('flowDirection should return a function', () =>{
+    expect(typeof (mdLinks.flowDirection)).toBe('function')
+  });
 
-// unit test first example
-describe ('mdLinks', () => {
-  it('should return a function', () =>{
-    expect(typeof mdLinks.add).toBe('function')
-  })
+  test('should return Total Links: 3', () => {
+    expect.assertions(1);
+    return mdLinks.flowDirection('stats').then(data=>{
+      expext(data).toBe('stats option selected')
+    })
+  });
+
 })
 
