@@ -96,7 +96,28 @@ const validateOption = () => {
       console.error(err);
     });
 };
-
+//function to make STATS option work
+const statsSelected = () => {
+  resultReadFile
+    .then(data => {
+      const linkArray = findLinksInFile(data);
+      const objArray = linkArray.map(putLinksInArray);
+      return objArray;
+    })
+    .then(data => {
+      console.log(chalk.underline('Print text with total links'));
+      let totalLinks = 0;
+      data.forEach(element => {
+        element.link = 1
+        totalLinks = totalLinks + element.link
+      })
+      console.log('Total Links :' + totalLinks)
+   
+    })
+    .catch(err => {
+      console.error(err);
+    });
+};
 //function to make validate-stats work
 const statsCount = () => {
     resultReadFile
@@ -137,12 +158,12 @@ const flowDirection = setDirection => {
 
     case 'stats':
       console.log(chalk.bold('stats option selected'));
-      statsCount();
+      statsSelected();
       break;
 
     case 'validate-stats':
       console.log(chalk.bold('validate&stats options selected'));
-      statsOptionSelected()
+      validateStatsOptionSelected()
       break;
 
     default:
