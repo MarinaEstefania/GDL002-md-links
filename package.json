@@ -1,11 +1,6 @@
 {
   "name": "md-links-marinaestefania",
   "version": "1.0.1",
-  /* "scripts": {
-    "eslint": "eslint --ext .js src/ test/",
-    "pretest": "npm run eslint",
-    "test": "jest --coverage --colors"
-  }, */
   "devDependencies": {
     "eslint": "^5.16.0",
     "jest": "^24.7.1"
