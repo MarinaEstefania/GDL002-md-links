@@ -89,14 +89,15 @@ const statsSelected = () => {
       console.error(err);
     });
 };
+const prepareObject = data => {
+  const linkArray = findLinksInFile(data);
+  const objArray = linkArray.map(putLinksInArray);
+  return objArray;
+};
 //function to make validate-stats work
 const validateStatsOptionSelected = () => {
   resultReadFile
-    .then(data => {
-      const linkArray = findLinksInFile(data);
-      const objArray = linkArray.map(putLinksInArray);
-      return objArray;
-    })
+    .then(prepareObject)
     .then(data => {
       console.log(chalk.underline('Print text with count of total, working and broken links'));
       let statusOK = 0;
