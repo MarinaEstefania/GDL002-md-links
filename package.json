@@ -1,5 +1,5 @@
 {
-  "name": "md-links",
+  "name": "md-links-marinaestefania",
   "version": "1.0.1",
   "scripts": {
     "eslint": "eslint --ext .js src/ test/",
