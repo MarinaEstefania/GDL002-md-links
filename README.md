@@ -30,7 +30,7 @@ The Flowchart's project goes like this:
 
 ### Installation
 At your console stay in the folder where you want to install the module and all you have to do is write this in the Command Line Interface (CLI):
-**npm install MarinaEstefania/GDL002-md-links**
+**npm i md-links-marinaestefania --save**
 
  ![Imgur](https://i.imgur.com/h7JB1Mz.png)
 
